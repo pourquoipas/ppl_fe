@@ -1,0 +1,30 @@
+<!-- 
+<mat-form-field class="w95">
+	<input [disabled]="!canManageField(fieldName)"
+	placeholder="{{ 'persona.label.cognome' | translate }}" 
+	matInput  formControlName="{{ fieldName }}" />
+	<mat-error *ngIf="matInputSelector.invalid && (mainForm.controls['cognome'].dirty || mainForm.controls['cognome'].touched)">
+        <p class="error-message" *ngIf="mainForm.controls	['cognome'].errors.required">This field is <strong>required.</strong></p>
+   	</mat-error>
+</mat-form-field>
+-->
+<mat-form-field class="{{ class }}" [formGroup]="form">
+    <input matInput 
+    [disabled]="disabled"
+    type="text" 
+    [placeholder]="placeholder" 
+    [errorStateMatcher]="errorMatcher()"
+    [formControlName]="fieldName"
+    />
+<!--     [(ngModel)]="value"  -->
+<!--     #inputValue="ngModel"  -->
+<!--     <mat-hint *ngIf="hint && (hint.length > 0) && inputValue.valid">{{ hint }}</mat-hint> -->
+<!--     <mat-hint *ngIf="hint && (hint.length > 0) && control?.valid">{{ hint }}</mat-hint> -->
+<!--    required  -->
+<!--     [formGroup]="form" -->
+    <mat-error *ngIf="(control?.invalid)">
+	    <div style="overflow: hidden;" #parentTag (mouseenter)="move()" (mouseleave)="stop()">
+	    	<p #target class="error-message">{{ getErrors() }}</p>
+		</div> 
+    </mat-error>
+</mat-form-field>

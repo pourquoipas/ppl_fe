@@ -1,0 +1,33 @@
+<mat-accordion *ngFor="let mi of menu">
+	<app-menu-item [item]="mi"[collapsedHeight]="'24px'" [expandedHeight]="'30px'" (sidenavClose)="closeSidenav()" ></app-menu-item>
+</mat-accordion>
+
+<!-- 
+<mat-accordion *ngFor="let mi of menu">
+  <mat-expansion-panel class="menu-group" >
+    <mat-expansion-panel-header class="menu-group" [collapsedHeight]="'16px'" [expandedHeight]="'24px'">
+      <mat-panel-title>
+        {{mi.label}}
+      </mat-panel-title>
+ -->      
+<!-- KEEP      
+      <mat-panel-description>
+        Type your name and age
+      </mat-panel-description>
+-->
+<!-- 
+    </mat-expansion-panel-header>
+ -->    
+<!-- KEEP     
+    <mat-nav-list class="menu-voice" dense>
+    	<a mat-list-item (click)="onMenuClick()" class="menu-voice" routerLink="{{mv.route}}" *ngFor="let mv of mi.items"> {{ mv.label }} </a>
+    </mat-nav-list>
+ -->
+<!--  
+    <div *ngFor="let mv of mi.items" class="menu-voice">
+    	<a (click)="onMenuClick()" class="menu-voice-link" routerLink="{{mv.route}}" > {{ mv.label }} </a>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+ -->
+ 

@@ -1,0 +1,27 @@
+{
+    "_comment_info": "Application information path",
+    "title": "Ppl",
+    "version": "alpha 0.0.1",
+
+    "_comment_config": "Configuration switches",
+    "listPageSize": 10,
+    "listPickSize": 10,
+
+    "_comment_configuration": "Configuration paths",
+    "loginPage": "/login",
+    "tenantPage": "/login/landsocieta",
+    
+    "_comment_admin": "Admin paths",
+    "societaBe": "http://localhost:10000/api/v1/admin/societa",
+
+    "_comment_base": "base paths",
+    "statoBe": "http://localhost:10000/api/v1/base/stato",
+    "statofederatoBe": "http://localhost:10000/api/v1/base/statofederato",
+    "regioneBe": "http://localhost:10000/api/v1/base/regione",
+    "provinciaBe": "http://localhost:10000/api/v1/base/provincia",
+    "comuneBe": "http://localhost:10000/api/v1/base/comune",
+    "titolostudioBe": "http://localhost:10000/api/v1/base/titolostudio",
+    
+    "_comment_hr": "hr paths",
+    "personaBe": "http://localhost:10000/api/v1/hr/persona"
+}

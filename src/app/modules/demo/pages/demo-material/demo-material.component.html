@@ -1,0 +1,47 @@
+<p>demo-material works!</p>
+<mat-card> <mat-card-header> <mat-card-title>
+Mat Card with components: menu </mat-card-title> </mat-card-header>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<button mat-button [matMenuTriggerFor]="menu">
+				<mat-icon>face</mat-icon>
+				Menu
+			</button>
+			<mat-menu #menu="matMenu">
+			<button mat-menu-item (click)="openSnackBar('Item 1', 'Menu')">Item
+				1</button>
+			<button mat-menu-item (click)="openSnackBar('Item 2', 'Menu')">Item
+				2</button>
+			</mat-menu>
+		</div>
+		<div class="col-sm-4">One of three columns</div>
+		<div class="col-sm-4">One of three columns</div>
+	</div>
+</div>
+</mat-card>
+<mat-card> <mat-card-header> <mat-card-title>
+Mat Card with components </mat-card-title> </mat-card-header>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4">
+			<button mat-button (click)="openOverlay()">Mat Button</button>
+		</div>
+		<div class="col-sm-4">
+			<div [class.active]="aaa" class="origin"
+				#overlayOrigin="cdkOverlayOrigin" cdkOverlayOrigin>mouse over
+				on me for 300ms to open overlay</div>
+			<hr-overlay-panel [isOpen]=openPanel [overlayOrigin]="overlayOrigin"
+				(close)="aaa = false" (open)="aaa = true">
+			<div class="row">
+				<div class="col-sm-4">One of three columns</div>
+				<div class="col-sm-4">One of three columns</div>
+				<div class="col-sm-4">One of three columns</div>
+
+			</div>
+			</hr-overlay-panel>
+		</div>
+		<div class="col-sm-4">One of three columns</div>
+	</div>
+</div>
+</mat-card>

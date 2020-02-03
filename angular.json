@@ -24,7 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss",
+              "src/theme.scss",
+              "./node_modules/bootstrap-css-only/css/bootstrap.css",
+              "src/assets/global.scss"
             ],
             "scripts": []
           },
@@ -120,6 +123,12 @@
           }
         }
       }
-    }},
-  "defaultProject": "hr"
+    }
+  },
+  "defaultProject": "hr",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

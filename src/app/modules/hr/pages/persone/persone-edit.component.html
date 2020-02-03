@@ -1,0 +1,348 @@
+<div class="mat-elevation-z4 mat-buttons buttons-bar">
+	<div class="row">
+		<div class="col-sm-6">
+			<button mat-button (click)="back()" class="command-left-button">
+				<mat-icon class="right8">keyboard_backspace</mat-icon>{{ 'global.label.back' | translate }}
+			</button>
+		</div>
+		<div class="col-sm-6">
+			<button mat-button (click)="save()" class="command-button" [disabled]="!mainForm.valid">
+				<mat-icon class="right8">save</mat-icon>{{ 'global.label.save' | translate }}
+			</button>
+			<button mat-button (click)="delete()" class="command-button">
+				<mat-icon class="right8">delete</mat-icon>{{ 'global.label.delete' | translate }}
+			</button>
+		</div>
+	</div>	
+</div>
+<form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+	<div class="">
+		<mat-tab-group>
+		
+<!-- TAB Dati anagrafici -->		
+<mat-tab label="{{'persona.tabs.anagrafica' | translate}}">
+	<div class="mat-elevation-z2 mat-edit-card">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6" *ngIf="canViewField('codice')">
+					<mat-form-field class="w95">
+						<input [disabled]="!canManageField('codice')" 
+						matInput placeholder="{{ 'table.label.codice' | translate }}" 
+						formControlName="codice" />
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6" *ngIf="canViewField('cognome')">
+					<mat-form-field class="w95">
+						<input [disabled]="!canManageField('cognome')"
+						placeholder="{{ 'persona.label.cognome' | translate }}" 
+						matInput  formControlName="cognome" />
+									<mat-error *ngIf="mainForm.controls['cognome'].invalid && (mainForm.controls['cognome'].dirty || mainForm.controls['cognome'].touched)">
+								        <p class="error-message" *ngIf="mainForm.controls	['cognome'].errors.required">This field is <strong>required.</strong></p>
+							    	</mat-error>
+					</mat-form-field>
+				</div>
+				<div class="col-sm-6" *ngIf="canViewField('nome')">
+					<mat-form-field class="w95">
+						<input [disabled]="!canManageField('nome')" matInput
+						 placeholder="{{ 'persona.label.nome' | translate }}" 
+						 formControlName="nome" />
+					</mat-form-field>
+				</div>
+				<div class="col-sm-6" *ngIf="canViewField('sesso')">
+					<mat-form-field class="w95">
+						<mat-label>{{ 'persona.label.sesso' | translate }}</mat-label>
+						<mat-select formControlName="sesso">
+							<mat-option *ngFor="let e of sessi" value="{{e.value}}">
+							{{ e.label | translate }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+				<div class="col-sm-6" *ngIf="canViewField('statoCivile')">
+					<mat-form-field class="w95">
+						 <mat-label>{{ 'persona.label.statoCivile' | translate }}</mat-label>
+						<mat-select formControlName="statoCivile">
+							<mat-option *ngFor="let e of staticivili" value="{{e.value}}">
+							{{ e.label | translate }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6" *ngIf="canViewField('comuneNascita')">
+					<app-pick-table codeLabel="persona.label.comuneNascita" 
+						descLabel="comune.pick.desc" (pick)="pickComuneNascitaOpen()"
+						[table]="entity.comuneNascita">
+					</app-pick-table>
+				</div>
+				<div class="col-sm-6" *ngIf="canViewField('provinciaNascita')">
+					<app-pick-table codeLabel="persona.label.provinciaNascita" 
+						descLabel="provincia.pick.desc" (pick)="pickProvinciaNascitaOpen()"
+						[table]="entity.provinciaNascita">
+					</app-pick-table>
+				</div>
+				<div class="col-sm-6" *ngIf="canViewField('statoNascita')">
+					<app-pick-table codeLabel="persona.label.statoNascita" 
+						descLabel="stato.pick.desc" (pick)="pickStatoNascitaOpen()"
+						[table]="entity.statoNascita">
+					</app-pick-table>
+				</div>
+				<div class="col-sm-6" *ngIf="canViewField('cittadinanza')">
+					<app-pick-table codeLabel="persona.label.cittadinanza" 
+						descLabel="stato.pick.desc" (pick)="pickCittadinanzaOpen()"
+						[table]="entity.cittadinanza">
+					</app-pick-table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4" *ngIf="canViewField('dataNascita')">
+					<mat-form-field class="w95">
+						<input [disabled]="!canManageField('dataNascita')" matInput [matDatepicker]="pick_dataNascita"
+							placeholder="{{ 'persona.label.dataNascita' | translate }}" formControlName="dataNascita" />
+					  	<mat-datepicker-toggle matSuffix [for]="pick_dataNascita"></mat-datepicker-toggle>
+					  	<mat-datepicker #pick_dataNascita></mat-datepicker>
+					</mat-form-field>
+				</div>
+				<div class="col-sm-8" *ngIf="canViewField('codiceFiscale')">
+					<mat-form-field class="w95">
+						<input [disabled]="!canManageField('codiceFiscale')" matInput
+						 placeholder="{{ 'persona.label.codiceFiscale' | translate }}" 
+						 formControlName="codiceFiscale" />
+					</mat-form-field>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8" *ngIf="canViewField('titoloStudio')">
+					<app-pick-table codeLabel="persona.label.titoloStudio" 
+						(pick)="pickTitoloStudioOpen()"
+						[table]="entity.titoloStudio">
+					</app-pick-table>
+				</div>
+				<div class="col-sm-4" *ngIf="canViewField('titoloStudioAnno')">
+					<mat-form-field class="w95">
+						<input [disabled]="!canManageField('titoloStudioAnno')" matInput
+						 placeholder="{{ 'persona.label.titoloStudioAnno' | translate }}" 
+						 formControlName="titoloStudioAnno" />
+					</mat-form-field>
+				</div>
+				<div class="col-sm-12" *ngIf="canViewField('titoloStudioDesc')">
+					<mat-form-field class="w95">
+						<input [disabled]="!canManageField('titoloStudioDesc')" matInput
+						 placeholder="{{ 'persona.label.titoloStudioDesc' | translate }}" 
+						 formControlName="titoloStudioDesc" />
+					</mat-form-field>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-tab>
+
+<!--  tab indirizzi -->
+<mat-tab label="{{'persona.tabs.indirizzi' | translate}}">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-6">
+<!-- residenza -->			
+				<div class="mat-elevation-z2 mat-edit-card">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-12">
+								<label>{{'persona.label.residenza' | translate }}</label>
+								<mat-divider></mat-divider>
+							</div>
+							<div class="col-sm-12" *ngIf="canViewField('residenza_aggiuntive')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('residenza_aggiuntive')" matInput
+									 placeholder="{{ 'indirizzo.label.aggiuntive' | translate }}" 
+									 formControlName="residenza_aggiuntive" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('residenza_comune')">
+								<app-pick-table codeLabel="indirizzo.label.comune" 
+									descLabel="comune.pick.desc" (pick)="pickResidenzaComuneOpen()"
+									[table]="entity.residenza.comune">
+								</app-pick-table>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('residenza_cap')">
+<!-- --> 							
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('residenza_cap')" matInput
+									 placeholder="{{ 'indirizzo.label.cap' | translate }}" 
+									 formControlName="residenza_cap" />
+								</mat-form-field>
+								
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('residenza_provincia')">
+								<app-pick-table codeLabel="indirizzo.label.provincia" 
+									descLabel="provincia.pick.desc" (pick)="pickResidenzaProvinciaOpen()"
+									[table]="entity.residenza.provincia">
+								</app-pick-table>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('residenza_stato')">
+								<app-pick-table codeLabel="indirizzo.label.stato" 
+									descLabel="stato.pick.desc" (pick)="pickResidenzaStatoOpen()"
+									[table]="entity.residenza.stato">
+								</app-pick-table>
+							</div>
+							<div class="col-sm-8" *ngIf="canViewField('residenza_localita')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('residenza_localita')" matInput
+									 placeholder="{{ 'indirizzo.label.localita' | translate }}" 
+									 formControlName="residenza_localita" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-4" *ngIf="canViewField('residenza_cap')">
+								<app-input class="w95"
+									placeholder="{{ 'indirizzo.label.cap' | translate }}" 
+								 	fieldName="residenza_cap"
+								 	hint="TODO Immetti il CAP"
+								 	[form]="mainForm"
+									[disabled]="!canManageField('residenza_cap')"
+								 	formControlName="residenza_cap"
+								></app-input>
+<!-- 								<app-text-input -->
+<!-- 									group="mainForm" placeholder="Prova" controlName="residenza_cap" -->
+<!-- 									hint="Caccia fuori il CAP" -->
+<!-- 								></app-text-input> -->
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col-sm-8" *ngIf="canViewField('residenza_indirizzo')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('residenza_indirizzo')" matInput
+									 placeholder="{{ 'indirizzo.label.indirizzo' | translate }}"
+									  formControlName="residenza_indirizzo" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-4" *ngIf="canViewField('residenza_civico')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('residenza_civico')" matInput
+									 placeholder="{{ 'indirizzo.label.civico' | translate }}" 
+									 formControlName="residenza_civico" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('residenza_interno')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('residenza_interno')" matInput
+									 placeholder="{{ 'indirizzo.label.interno' | translate }}"
+									  formControlName="residenza_interno" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('residenza_scala')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('residenza_scala')" matInput
+									 placeholder="{{ 'indirizzo.label.scala' | translate }}" 
+									 formControlName="residenza_scala" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-12" *ngIf="canViewField('residenza_edificioDesc')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('residenza_edificioDesc')" matInput
+									 placeholder="{{ 'indirizzo.label.edificioDesc' | translate }}" 
+									 formControlName="residenza_edificioDesc" />
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+<!-- domicilio -->				
+				<div class="mat-elevation-z2 mat-edit-card">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-12">
+								<label>{{'persona.label.domicilio' | translate }}</label>
+								<mat-divider></mat-divider>
+							</div>
+							<div class="col-sm-12" *ngIf="canViewField('domicilio_aggiuntive')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('domicilio_aggiuntive')" matInput
+									 placeholder="{{ 'indirizzo.label.aggiuntive' | translate }}" 
+									 formControlName="domicilio_aggiuntive" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('domicilio_comune')">
+								<app-pick-table codeLabel="indirizzo.label.comune" 
+									descLabel="comune.pick.desc" (pick)="pickDomicilioComuneOpen()"
+									[table]="entity.domicilio.comune">
+								</app-pick-table>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('domicilio_cap')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('domicilio_cap')" matInput
+									 placeholder="{{ 'indirizzo.label.cap' | translate }}" 
+									 formControlName="domicilio_cap" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('domicilio_provincia')">
+								<app-pick-table codeLabel="indirizzo.label.provincia" 
+									descLabel="provincia.pick.desc" (pick)="pickDomicilioProvinciaOpen()"
+									[table]="entity.domicilio.provincia">
+								</app-pick-table>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('domicilio_stato')">
+								<app-pick-table codeLabel="indirizzo.label.stato" 
+									descLabel="stato.pick.desc" (pick)="pickDomicilioStatoOpen()"
+									[table]="entity.domicilio.stato">
+								</app-pick-table>
+							</div>
+							<div class="col-sm-8" *ngIf="canViewField('domicilio_localita')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('domicilio_localita')" matInput
+									 placeholder="{{ 'indirizzo.label.localita' | translate }}" 
+									 formControlName="domicilio_localita" />
+								</mat-form-field>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-8" *ngIf="canViewField('domicilio_indirizzo')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('domicilio_indirizzo')" matInput
+									 placeholder="{{ 'indirizzo.label.indirizzo' | translate }}"
+									  formControlName="domicilio_indirizzo" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-4" *ngIf="canViewField('domicilio_civico')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('domicilio_civico')" matInput
+									 placeholder="{{ 'indirizzo.label.civico' | translate }}" 
+									 formControlName="domicilio_civico" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('domicilio_interno')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('domicilio_interno')" matInput
+									 placeholder="{{ 'indirizzo.label.interno' | translate }}"
+									  formControlName="domicilio_interno" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-6" *ngIf="canViewField('domicilio_scala')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('domicilio_scala')" matInput
+									 placeholder="{{ 'indirizzo.label.scala' | translate }}" 
+									 formControlName="domicilio_scala" />
+								</mat-form-field>
+							</div>
+							<div class="col-sm-12" *ngIf="canViewField('domicilio_edificioDesc')">
+								<mat-form-field class="w95">
+									<input [disabled]="!canManageField('domicilio_edificioDesc')" matInput
+									 placeholder="{{ 'indirizzo.label.edificioDesc' | translate }}" 
+									 formControlName="domicilio_edificioDesc" />
+								</mat-form-field>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</mat-tab>
+
+		</mat-tab-group>
+	</div>
+	</form>

@@ -1,0 +1,27 @@
+
+<!-- <div class="row">
+	<div class="col-sm-12">
+		<mat-form-field>
+ -->		 
+		<mat-form-field class="w95">
+	      <!--Label text-->
+			<mat-label>{{text}}<sup *ngIf="!optional">*</sup></mat-label> 
+	      <!--Input form control element with on change event listener helpful to propagate changes -->
+			<mat-select #input id="{{idd}}" placeholder="{{pH}}" (blur)="onChange($event, input.value)" [compareWith]="compareValues"> 
+				<mat-option *ngFor="let e of elements" [value]="e.value" > 
+					{{e.label | translate}} 
+				</mat-option> 
+			</mat-select>
+			 
+	      <!--Loop through errors-->
+<!-- 	      
+	      <div style="height:0px;" [@visibilityChanged]="!c.pristine && !c.valid" class="error">
+	            <p *ngFor="let error of errors">{{error}}</p>
+	      </div>
+ -->	
+       
+		</mat-form-field>
+<!-- 		
+	</div>
+</div>
+ -->

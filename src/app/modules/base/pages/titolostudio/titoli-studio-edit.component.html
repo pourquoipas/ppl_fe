@@ -1,0 +1,95 @@
+<ng-container *ngIf="!initialized(); else initDone">
+    <div class="margin-top">
+<!--         <ebl-loader></ebl-loader> -->
+		<h1>MORTACCI</h1>
+    </div>
+</ng-container>
+<ng-template #initDone>
+<div class="mat-elevation-z4 mat-buttons buttons-bar">
+	<div class="row">
+		<div class="col-sm-6">
+			<button mat-button (click)="back()" class="command-left-button">
+				<mat-icon class="right8">keyboard_backspace</mat-icon>{{ 'global.label.back' | translate }}
+			</button>
+		</div>
+		<div class="col-sm-6">
+			<button mat-button (click)="save()" class="command-button">
+				<mat-icon class="right8">save</mat-icon>{{ 'global.label.save' | translate }}
+			</button>
+			<button mat-button (click)="delete()" class="command-button">
+				<mat-icon class="right8">delete</mat-icon>{{ 'global.label.delete' | translate }}
+			</button>
+		</div>
+	</div>	
+</div>
+<div class="mat-elevation-z2 mat-edit-card">
+<!-- 	<form [formGroup]="mainForm" (ngSubmit)="onSubmit()"> -->
+	<form [formGroup]="mainForm">
+		<div class="row">
+			<div class="col-sm-6" *ngIf="canViewField('codice')">
+				<div class="row">
+					<div class="col-sm-12 left8">
+						<mat-form-field class="w95">
+							<input [disabled]="!canManageField('codice')" matInput placeholder="{{ 'table.label.codice' | translate }}" formControlName="codice" />
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6" *ngIf="canViewField('descrizione')">
+				<div class="row">
+					<div class="col-sm-12 left8">
+						<mat-form-field class="w95">
+							<input [disabled]="!canManageField('descrizione')"
+							placeholder="{{ 'table.label.descrizione' | translate }}" 
+							matInput  formControlName="descrizione" />
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6" *ngIf="canViewField('livello')">
+				<div class="row">
+					<div class="col-sm-12 left8">
+						<mat-form-field class="w95">
+							<mat-select formControlName="livello">
+								<mat-option *ngFor="let e of livelli" value="{{e.value}}">
+								{{ e.label | translate }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+<!-- 						
+						<app-simple-combo [elements]="livelli" text="Prova" formControlName="livello"  [optional]="true">
+						</app-simple-combo>
+ -->						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6" *ngIf="canViewField('inizio')">
+				<div class="row">
+					<div class="col-sm-12 left8">
+						<mat-form-field class="w95">
+								<input [disabled]="!canManageField('inizio')" matInput [matDatepicker]="pick_inizio"
+									placeholder="{{ 'table.label.inizio' | translate }}" formControlName="inizio" />
+							  	<mat-datepicker-toggle matSuffix [for]="pick_inizio"></mat-datepicker-toggle>
+							  	<mat-datepicker #pick_inizio></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6" *ngIf="canViewField('fine')">
+				<div class="row">
+					<div class="col-sm-12 left8">
+						<mat-form-field class="w95">
+								<input [disabled]="!canManageField('fine')" matInput [matDatepicker]="pick_fine"
+									placeholder="{{ 'table.label.fine' | translate }}" formControlName="fine" />
+							  	<mat-datepicker-toggle matSuffix [for]="pick_fine"></mat-datepicker-toggle>
+							  	<mat-datepicker #pick_fine></mat-datepicker>
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+</ng-template>

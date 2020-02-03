@@ -1,0 +1,17 @@
+.pick-container {
+   height: auto;
+   overflow: hidden;
+}
+
+.pick-right {
+    float: right;
+    /* the next props are meant to keep this block independent from the other floated one */
+    width: 80px;
+}
+
+.pick-left {
+    float: left; 
+    width: calc(100% - 80px); 
+    overflow: hidden;
+}
+

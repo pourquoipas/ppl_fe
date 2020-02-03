@@ -1,0 +1,9 @@
+<mat-form-field
+	[formGroup]="group" 
+>
+  <input matInput type="text" [placeholder]="placeholder" [disabled]="disabled" 
+  [formControlName]="controlName"
+	>
+	<mat-hint *ngIf="hint && hint.length > 0">{{ hint }} </mat-hint>
+	<mat-error>Errori</mat-error>
+</mat-form-field>

@@ -1,7 +1,22 @@
-<!-- header -->
-<app-header></app-header>
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 
-<!-- footer -->
-<app-footer></app-footer>
+
+<!-- <app-layout> -->
+  <mat-sidenav-container class="app">
+    <mat-sidenav #sidenav role="navigation" fixedInViewport="true" mode="push">
+      <!--this is a place for us to add side-nav code-->
+      <app-main-menu (sidenavClose)="sidenav.close()"></app-main-menu>
+    </mat-sidenav>
+    <mat-sidenav-content class="d-flex flex-column ">
+		<!-- header -->
+		<app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+      <!--in here all the content must reside. We will add a navigation header as well-->
+      <main class="container-fluid flex-fill">
+        <router-outlet></router-outlet>
+      </main>
+		<!-- footer -->
+		<app-footer class=""></app-footer>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+<!-- </app-layout> -->

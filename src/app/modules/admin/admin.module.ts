@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CoreModule } from 'src/app/core/core.module';
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SocietaListComponent } from './pages/societa/societa-list.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { SocietaEditComponent } from './pages/societa/societa-edit.component';
 
 @NgModule({
-  declarations: [AdminHomeComponent],
+  declarations: [AdminHomeComponent, SocietaListComponent, SocietaEditComponent],
   imports: [
     AdminRoutingModule,
     CommonModule,
-    CoreModule,
+    SharedModule,
+    // CoreModule,
+	TranslateModule.forChild()
   ]
 })
 export class AdminModule { }

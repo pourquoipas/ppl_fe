@@ -1,0 +1,20 @@
+<mat-expansion-panel class="" *ngIf="isFolder()" style="padding-left: 0"> 
+	<mat-expansion-panel-header class="menu-group" [collapsedHeight]="expandedHeight" [expandedHeight]="expandedHeight"> 
+		<mat-panel-title> {{item.label}} </mat-panel-title>
+	</mat-expansion-panel-header>
+<!-- 	
+	<div *ngFor="let mv of item.items">
+		<app-menu-item [item]="mv" [collapsedHeight]="collapsedHeight" [expandedHeight]="expandedHeight" (sidenavClose)="closeSidenav()">
+		</app-menu-item>
+	</div>
+ -->	
+	<app-menu-item *ngFor="let mv of item.items" [item]="mv" [collapsedHeight]="collapsedHeight" [expandedHeight]="expandedHeight" (sidenavClose)="closeSidenav()">
+	</app-menu-item>
+</mat-expansion-panel>
+<!-- 
+<a *ngIf="isVoice()" (click)="onMenuClick()" class="menu-voice-link" routerLink="{{item.route}}" > {{ item.label }} </a>
+ -->
+<div *ngIf="isVoice()" class="menu-voice" (click)="navigate(item.route)">
+{{ item.label }}
+<!-- 	<a (click)="onMenuClick()" class="menu-voice-link" routerLink="{{item.route}}" > {{ item.label }} </a> -->
+</div>

@@ -1,0 +1,209 @@
+{
+    "app": {
+        "title": "PPl"
+    },
+    "global": {
+        "label": {
+            "search": "Cerca",
+            "exit": "Esci",
+            "back": "Indietro",
+            "save": "Salva",
+            "delete": "Cancella",
+            "new": "Nuovo",
+            "select": "Seleziona"
+        }
+    },
+    "generic": {
+    	"label": {
+    		"actions": "Azioni",
+    		"select": "Seleziona"
+    	},
+    	"title": {
+    		"filters": "Filtri"
+    	}
+    },
+    "filters": {
+    	"label": {
+    		"apply": "Applica",
+    		"close": "Chiudi",
+    		"reset": "Reimposta"
+    	}
+    },
+    "table": {
+    	"label" : {
+    		"codice": "Codice",
+    		"descrizione": "Descrizione",
+    		"inizio": "Inizio validità",
+    		"fine": "Fine validità"
+    	}
+    },
+    "error": {
+        "generic": "Errore generico",
+        "forbidden": "Accesso negato",
+        "timeout": "Timeout"
+    },
+    
+    
+    "societa": {
+    	"title": "Gestione società",
+    	"label": {
+    		"ruoloAccesso": "Ruolo per accesso"
+    	}
+    },
+    
+    "stato": {
+    	"title": "Gestione stati",
+    	"description": "Tabella descrizione stati nazionali",
+    	"label": {
+    		"isoAlpha2": "Codice ISO alpha 2",
+			"isoAlpha3": "Codice ISO alpha 3",
+			"isoNumeric": "Codice ISO numerico"
+    	},
+    	"pick": {
+    		"title": "Cerca stato",
+    		"code": "Cerca stato",
+    		"desc": ""
+    	}
+    },
+    "statofederato": {
+    	"title": "Gestione stati federati",
+    	"description": "Tabella descrizione stati federati (facenti parte di uno stato)",
+    	"label": {
+    		"stato": "Stato"
+    	},
+    	"pick": {
+    		"title": "Cerca stato federato",
+    		"code": "Cerca stato federato",
+    		"desc": ""
+    	}
+    },
+    "regione": {
+    	"title": "Gestione regioni",
+    	"description": "Tabella descrizione regioni",
+    	"label": {
+    		"stato": "Stato",
+			"statofederato": "Stato federato"
+    	},
+    	"pick": {
+    		"title": "Cerca regione",
+    		"code": "Cerca regione",
+    		"desc": ""
+    	}
+    },
+    "provincia": {
+    	"title": "Gestione province",
+    	"description": "Tabella descrizione province",
+    	"label": {
+    		"sigla": "Sigla",
+    		"stato": "Stato",
+			"statofederato": "Stato federato",
+			"regione": "Regione"
+    	},
+    	"pick": {
+    		"title": "Cerca provincia",
+    		"code": "Cerca provincia",
+    		"desc": "descrizione provincia"
+    	}
+    },
+    "comune": {
+    	"title": "Gestione comuni",
+    	"description": "Tabella descrizione comuni",
+    	"label": {
+    		"codiceStatistico": "Codice statistico",
+    		"cap": "Cap principale",
+    		"stato": "Stato",
+			"statofederato": "Stato federato",
+			"regione": "Regione",
+			"provincia": "Provincia"
+    	},
+    	"pick": {
+    		"title": "Cerca comune",
+    		"code": "Cerca comune",
+    		"desc": "descrizione comune"
+    	}
+    },
+    "titolostudio": {
+    	"title": "Gestione titoli di studio",
+    	"description": "Tabella descrizione titoli di studio",
+    	"label": {
+    		"livello": "Livello titolo"
+    	},
+    	"pick": {
+    		"title": "Cerca titolo studio",
+    		"code": "Cerca titolo studio",
+    		"desc": ""
+    	}
+    },
+    "persona": {
+    	"title": "Gestione dati anagrafici persone",
+    	"description": "Tabella dati anagrafici persone",
+    	"tabs": {
+    		"anagrafica": "Dati anagrafici",
+    		"indirizzi": "Indirizzi"
+    	},
+    	"label": {
+    		"cognome": "Cognome",
+    		"nome": "Nome",
+    		"sesso": "Sesso",
+    		"statoCivile": "Stato civile",
+    		"dataNascita": "Data nascita",
+    		"codiceFiscale": "Codice Fiscale",
+    		"comuneNascita": "Comune di nascita",
+    		"provinciaNascita": "Provincia di nascita",
+    		"statoNascita": "Stato di nascita",
+    		"cittadinanza": "Stato di cittadinanza",
+    		"titoloStudio": "Titolo di studio",
+    		"titoloStudioDesc": "Descrizione titolo studio",
+    		"titoloStudioAnno": "Anno titolo di studio",
+    		"residenza": "Residenza",
+    		"domicilio": "Domicilio"
+    	},
+    	"pick": {
+    		"title": "Cerca persona",
+    		"code": "Cerca persona",
+    		"cognome": "",
+    		"nome": ""
+    	}
+    },
+    "indirizzo": {
+    	"label": {
+    		"stato": "Stato",
+    		"provincia": "Provincia",
+    		"comune": "Comune",
+    		"cap": "CAP",
+    		"localita": "Localita",
+    		"indirizzo": "Indirizzo",
+    		"civico": "N° civico",
+    		"interno": "Interno",
+    		"scala": "Scala",
+    		"edificioDesc": "Descriz. edificio (piano, isolato, palazzina, ecc)",
+    		"aggiuntive": "Informazioni aggiuntive (es presso.)"
+    	}
+    },
+    
+    
+    
+    "ENUM": {
+    	"LivelloTitoloStudioEnum": {
+			"INFANZIA": "Scuola infanzia",
+			"PRIMARIA":	"Scuola primaria (elementari)",
+			"SECONDARIA1": "Secondaria 1° grado (medie)",
+			"SECONDARIA2": "Secondaria 2° grado (superiori, tecnico/professionale/liceo)",
+			"SUPERIORE1": "Superiore 1° ciclo (Laurea Breve)",
+			"SUPERIORE2": "Superiore 2° ciclo (Laurea magistrale)",
+			"SUPERIORE3": "Superiore 3° ciclo (dottorato ricerca)",
+			"SUPERIOREALT": "Superiore Altro (pecializzazione, Master, Perfezionamento, ecc)"
+    	},
+    	"SessoEnum": {
+    		"MASCHIO": "Maschio",
+    		"FEMMINA": "Femmina"
+    	},
+    	"StatoCivileEnum": {
+    		"CELIBE": "Celibe/Nubile",
+    		"CONIUGATO": "Coniugato/a",
+    		"DIVORZIATO": "Divorziato/a",
+    		"VEDOVO": "Vedovo/a"
+    	}
+    }
+
+}

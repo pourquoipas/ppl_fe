@@ -1,0 +1,70 @@
+<!-- 
+La form dei filtri deve essere un div per tutta la lunghezza della pagina.
+Su questo div, a sx, c'è un pulsante (tre barre orizzontali?) per aprire l'overlay con i filtri.
+Poi lungo il div si aggiungono i tag dei filtri applicati.
+L'overlay dei filtri ha pulsanti 
+- Applica (filtra e chiude)
+- Azzera  (azzera i filtri)
+- Chiudi  (chiude senza cambiare i filtri)
+Il tag del filtro applicato, on click, apre un overlay per modificare il singolo filtro,
+Il tag del filtro, a dx o sx, ha un cestino per eliminare il filtro.
+ -->
+<div class="filters-form mat-elevation-z8">
+	<div class="row filter-tags">
+		<div class="col-sm-12 filter-tags">
+			<div class="col-sm-12 filter-tags">
+				<button mat-icon-button (click)="openFilters($event)" class="filters-button">
+					<!-- 				<mat-icon [class.active]="isOpen" class="origin" #overlayOrigin="cdkOverlayOrigin" cdkOverlayOrigin>filter_list</mat-icon> -->
+					<mat-icon [class.active]="isOpen" class="origin" #overlayOrigin="cdkOverlayOrigin" cdkOverlayOrigin>filter_list</mat-icon>
+				</button>
+				<div class="filter-tags-container">
+					<!-- TODO filter tags -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<hr-overlay-panel class="panel mat-elevation-z16" [isOpen]="isOpen" [overlayOrigin]="overlayOrigin" (close)="filtersClose($event)" (open)="filtersOpen($event)"> <!-- <hr-overlay-panel [isOpen]="isOpen" (close)="filtersClose($event)" (open)="filtersOpen($event)"> -->
+	<header *ngIf="true" class="filters-title">
+		<div class="row">
+			<div class="col-sm-12">	
+				<div class="title-text">
+					{{title}}
+				</div>
+			</div>
+		</div>
+	</header>
+	<form [formGroup]="filtersForm" (ngSubmit)="onFiltersSubmit()">
+		<div class="row">
+			<div class="col-sm-12" *ngFor="let filter of filters">
+				<div class="row top8">
+					<div class="col-sm-3">
+						<label class="filter-label">
+							{{filter.label | translate}}
+						</label>
+					</div>
+					<div class="col-sm-9" [ngSwitch]="filter.type">
+						<input *ngSwitchCase="FilterType.Input" mat-input class="filter-input" type="text"
+	                           [maxlength]="filter.maxlength" [formControlName]="filter.name"
+	                    />
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<footer>
+		<div class="row top8">
+			<div class="col-sm-12">	
+				<button mat-flat-button color="primary" (click)="applyFilters($event)" class="filter-button">
+					<mat-icon inline>filter_list</mat-icon> {{ 'filters.label.apply' | translate }}
+				</button>
+				<button mat-flat-button color="primary" (click)="resetFilters($event)" class="filter-button">
+					<mat-icon inline>delete_sweep</mat-icon> {{ 'filters.label.reset' | translate }}
+				</button>
+				<button mat-flat-button color="primary" (click)="closeFilters($event)" class="filter-button">
+					<mat-icon inline>close</mat-icon> {{ 'filters.label.close' | translate }}
+				</button>
+			</div>
+		</div>
+	</footer>
+</hr-overlay-panel>

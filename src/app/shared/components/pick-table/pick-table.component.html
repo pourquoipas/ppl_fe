@@ -1,0 +1,47 @@
+<!-- 
+<div class="row pick-base">
+<div class="col-sm-3 pick-code">
+<mat-form-field class="w95">
+<input matInput class="pick-code-input" value="{{table?.codice}}" />
+</mat-form-field>
+</div>
+	<div class="col-sm-8 pick-desc">
+		<mat-form-field class="w95"> 
+<input matInput class="pick-desc-input" />
+		</mat-form-field>
+</div>
+</div>
+ -->
+<div class="row pick-base">
+	<div class="col-sm-4 pick-code">
+		<mat-form-field class="w95" floatLabel="always"> 
+			<input matInput class="pick-code-input" value="{{table?.codice}}" [disabled]="true"
+			placeholder="{{codeLabel | translate}}"
+			/> 
+		</mat-form-field>
+	</div>
+	<div class="col-sm-8 pick-desc">
+		<div class="pick-container">
+			<div class="pick-left">
+				<mat-form-field class="w95"> 
+					<input matInput class="pick-desc-input" value="{{table?.descrizione}}" [disabled]="true"
+					placeholder="{{descLabel | translate}}"
+					/> 
+				</mat-form-field>
+			</div>
+			<div class="pick-right">
+				<button mat-icon-button (click)="onClear($event)" class="pick-button">
+					<mat-icon [class.active]="!disabled">clear</mat-icon>
+				</button>
+				<button mat-icon-button (click)="onPick($event)" class="pick-button">
+					<mat-icon [class.active]="!disabled">search</mat-icon>
+				</button>
+			</div>
+		</div>
+	</div>
+<!-- 	
+	<div class="col-sm-1 pick-pick">
+
+	</div>
+ -->	
+</div>
