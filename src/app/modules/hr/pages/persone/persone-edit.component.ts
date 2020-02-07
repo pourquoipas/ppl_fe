@@ -31,7 +31,7 @@ export class PersoneEditComponent extends AbstractEditHrComponent<Persona> {
         // throw new Error("Method not implemented.");
         this.mainForm = this.all.fb.group(
             {
-                codice: [this.entity.codice, this.all.validation.codice()],
+                codice: [{value: this.entity.codice, disabled: !this.isKeyEditable()}, this.all.validation.codice()],
                 cognome: [this.entity.cognome, this.all.validation.textRequiredMax(50)],
                 nome: [this.entity.nome, this.all.validation.textRequiredMax(50)],
                 sesso: [this.entity.sesso, this.all.validation.required()],

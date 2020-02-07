@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-sm-6" *ngIf="canViewField('codice')">
 					<mat-form-field class="w95">
-						<input [disabled]="!canManageField('codice')" 
+						<input [disabled]="!canManageField('codice') || !isKeyEditable()" 
 						matInput placeholder="{{ 'table.label.codice' | translate }}" 
 						formControlName="codice" />
 					</mat-form-field>
@@ -38,9 +38,9 @@
 						<input [disabled]="!canManageField('cognome')"
 						placeholder="{{ 'persona.label.cognome' | translate }}" 
 						matInput  formControlName="cognome" />
-									<mat-error *ngIf="mainForm.controls['cognome'].invalid && (mainForm.controls['cognome'].dirty || mainForm.controls['cognome'].touched)">
-								        <p class="error-message" *ngIf="mainForm.controls	['cognome'].errors.required">This field is <strong>required.</strong></p>
-							    	</mat-error>
+						<mat-error *ngIf="mainForm.controls['cognome'].invalid && (mainForm.controls['cognome'].dirty || mainForm.controls['cognome'].touched)">
+					        <p class="error-message" *ngIf="mainForm.controls	['cognome'].errors.required">This field is <strong>required.</strong></p>
+				    	</mat-error>
 					</mat-form-field>
 				</div>
 				<div class="col-sm-6" *ngIf="canViewField('nome')">
@@ -167,12 +167,20 @@
 								</app-pick-table>
 							</div>
 							<div class="col-sm-6" *ngIf="canViewField('residenza_cap')">
-<!-- --> 							
+<!-- 							
 								<mat-form-field class="w95">
 									<input [disabled]="!canManageField('residenza_cap')" matInput
 									 placeholder="{{ 'indirizzo.label.cap' | translate }}" 
 									 formControlName="residenza_cap" />
 								</mat-form-field>
+--> 								
+								<ppl-text-input [formGroup]="mainForm" controlName="residenza_cap"
+									hint="TODO impostare il CAP"
+									placeholder="{{ 'indirizzo.label.cap' | translate }}"
+									>
+								</ppl-text-input>
+<!-- 									 <app-hint-err hint="TODO inserire il cap" field="mainForm.get('residenza_cap')"> -->
+<!-- 									 </app-hint-err> -->
 								
 							</div>
 							<div class="col-sm-6" *ngIf="canViewField('residenza_provincia')">
@@ -194,20 +202,34 @@
 									 formControlName="residenza_localita" />
 								</mat-form-field>
 							</div>
-							<div class="col-sm-4" *ngIf="canViewField('residenza_cap')">
-								<app-input class="w95"
-									placeholder="{{ 'indirizzo.label.cap' | translate }}" 
-								 	fieldName="residenza_cap"
-								 	hint="TODO Immetti il CAP"
-								 	[form]="mainForm"
-									[disabled]="!canManageField('residenza_cap')"
-								 	formControlName="residenza_cap"
-								></app-input>
+<!-- 							<div class="col-sm-4" *ngIf="canViewField('residenza_cap')"> -->
+							
+							
+<!-- 								<app-input1 class="w95" -->
+<!-- 									placeholder="{{ 'indirizzo.label.cap' | translate }}"  -->
+<!-- 								 	fieldName="residenza_cap" -->
+<!-- 								 	hint="TODO Immetti il CAP" -->
+<!-- 								 	[form]="mainForm" -->
+<!-- 									[disabled]="!canManageField('residenza_cap')" -->
+<!-- 								 	formControlName="residenza_cap" -->
+<!-- 								></app-input1> -->
+								
+<!-- 								<app-input class="w95" -->
+<!-- 									placeholder="{{ 'indirizzo.label.cap' | translate }}"  -->
+<!-- 								 	fieldName="residenza_cap" -->
+<!-- 								 	hint="TODO Immetti il CAP" -->
+<!-- 								 	[form]="mainForm" -->
+<!-- 									[disabled]="!canManageField('residenza_cap')" -->
+<!-- 								 	formControlName="residenza_cap" -->
+<!-- 								></app-input> -->
+								
 <!-- 								<app-text-input -->
 <!-- 									group="mainForm" placeholder="Prova" controlName="residenza_cap" -->
 <!-- 									hint="Caccia fuori il CAP" -->
 <!-- 								></app-text-input> -->
-							</div>
+
+
+<!-- 							</div> -->
 							
 						</div>
 						<div class="row">
