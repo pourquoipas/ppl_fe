@@ -41,10 +41,10 @@ export class InputComponent implements ControlValueAccessor, MatFormFieldControl
     empty: boolean;
     shouldLabelFloat: boolean;
     disabled: boolean = false;
-    controlType?: string = 'text-box';
+    controlType?: string = 'app-input';
     autofilled?: boolean;
 
-    id: string = `text-box-${InputComponent.nextId++}`;
+    id: string = `app-input-${InputComponent.nextId++}`;
     focused: boolean = false;
 	
     @Input()

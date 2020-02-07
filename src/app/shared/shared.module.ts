@@ -46,7 +46,9 @@ import { TextInputComponent } from './components/text-input/text-input.component
 @NgModule({
 	declarations: [
 		OverlayPanelComponent,
-		FiltersFormComponent, PickTableComponent, SimpleComboComponent, InputComponent, TextInputComponent,
+		FiltersFormComponent, PickTableComponent, SimpleComboComponent, InputComponent, 
+		TextInputComponent,
+		
 	],
 	imports: [
 		ReactiveFormsModule,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Validators, ValidatorFn, FormControl } from '@angular/forms';
+import { Validators, ValidatorFn, FormControl, AbstractControl } from '@angular/forms';
 
 @Injectable({
 	providedIn: 'root'
@@ -66,7 +66,7 @@ export class ValidationService {
 		])
 	}
 	
-	public getError(control: FormControl): string {
+	public getError(control: AbstractControl): string {
 		let rv = '';
 		if (control) {
 			if (control.errors)	{
