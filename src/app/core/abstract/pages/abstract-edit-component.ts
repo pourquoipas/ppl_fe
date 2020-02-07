@@ -263,6 +263,12 @@ export abstract class AbstractEditComponent<T extends Entity> extends AbstractIn
 		return true;
 	}
 	
+	/** Nelle mie tabelle, i campi chiave (univoci, esempio campo codice su una tabella)
+	* sono editabili solo fino al primo salvataggio. 
+	*/
+	public isKeyEditable(): boolean {
+		return this.entity && this.entity.uuid == null;
+	} 
 	
 	// Prove pick
 	// N.B. create il vostro abstract-edit-<modulo>.component nel vostro modulo e scrivete la pickOpen li
