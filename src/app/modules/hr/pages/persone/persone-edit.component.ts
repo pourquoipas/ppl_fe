@@ -3,7 +3,7 @@ import { Persona } from '../../models/persona';
 import { AbstractEditComponent, ConfigEdit } from 'src/app/core/abstract/pages/abstract-edit-component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PersonaService } from '../../services/persona.service';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormGroup, Validators, ValidatorFn, FormControl } from '@angular/forms';
 import { AllService } from 'src/app/core/services/all.service';
 import { HR_ROUTES } from '../../conf/hr.const';
 import { ComboEntry } from 'src/app/core/services/enum-util.service';
@@ -14,6 +14,9 @@ import { ProvincePickComponent } from 'src/app/modules/base/pages/provincia/prov
 import { StatiPickComponent } from 'src/app/modules/base/pages/stato/stati-pick.component';
 import { TitoliStudioPickComponent } from 'src/app/modules/base/pages/titolostudio/titoli-studio-pick.component';
 import { AbstractEditHrComponent } from '../../abstract/abstract-edit-hr.component';
+import { AbstractControlBuilder } from 'src/app/core/util/abstract-control-builder';
+import { RowDataSource } from 'src/app/shared/models/row-data-source';
+import { Contatto } from '../../models/contatto';
 
 @Component({
   selector: 'app-persone-edit',
@@ -27,17 +30,24 @@ export class PersoneEditComponent extends AbstractEditHrComponent<Persona> {
 	public sessi: ComboEntry [];
 	public staticivili: ComboEntry [];
 	
+	public contattiDS: RowDataSource<Contatto> = null; // new RowDataSource<Contatto>();
+	
     public setupForm() {
         // throw new Error("Method not implemented.");
+//		const build: AbstractControlBuilder = new AbstractControlBuilder();
+//		build.group('mainForm')
+//		.control('codice', this.entity.codice).disabled(!this.isKeyEditable(), 'codice').validators(this.all.validation.codice(), 'codice')
+//		.control
+		
         this.mainForm = this.all.fb.group(
             {
-                codice: [{value: this.entity.codice, disabled: !this.isKeyEditable()}, this.all.validation.codice()],
-                cognome: [this.entity.cognome, this.all.validation.textRequiredMax(50)],
-                nome: [this.entity.nome, this.all.validation.textRequiredMax(50)],
-                sesso: [this.entity.sesso, this.all.validation.required()],
-                statoCivile: [this.entity.statoCivile, this.all.validation.required()],
-                dataNascita: [this.entity.dataNascita],
-                codiceFiscale: [this.entity.codiceFiscale, this.all.validation.max(16)],
+                codice: [{value: this.entity.codice, disabled: !this.isKeyFieldEditable('codice')}, this.all.validation.codice()],
+                cognome: [{value: this.entity.cognome, disabled: !this.isFieldEditable('cognome')}, this.all.validation.textRequiredMax(50)],
+                nome: [{ value: this.entity.nome, disabled: !this.isFieldEditable('nome')}, this.all.validation.textRequiredMax(50)],
+                sesso: [{ value: this.entity.sesso, disabled: !this.isFieldEditable('sesso')}, this.all.validation.required()],
+                statoCivile: [{ value: this.entity.statoCivile, disabled: !this.isFieldEditable('statoCivile')}, this.all.validation.required()],
+                dataNascita: [{ value: this.entity.dataNascita, disabled: !this.isFieldEditable('dataNascita')}],
+                codiceFiscale: [this.entity.codiceFiscale, this.all.validation.cf()],
                 titoloStudioDesc: [this.entity.titoloStudioDesc, this.all.validation.max(100)],
                 titoloStudioAnno: [this.entity.titoloStudioAnno, this.all.validation.positiveInteger()],
 				
@@ -49,8 +59,8 @@ export class PersoneEditComponent extends AbstractEditHrComponent<Persona> {
 //	  					Validators.maxLength(5),
 //					])
 				],
-				residenza_localita: [this.entity.residenza.localita,
-					this.all.validation.max(30)],
+				residenza_localita: this.control('residenza_localita', this.entity.residenza.localita, this.all.validation.max(30)),
+//				residenza_localita: [{ value: this.entity.residenza.localita, disabled: !this.isFieldEditable('dataNascita')}, this.all.validation.max(30)],
 				residenza_indirizzo: [this.entity.residenza.indirizzo,
 					this.all.validation.max(50)],
 				residenza_civico: [this.entity.residenza.civico,
@@ -74,6 +84,13 @@ export class PersoneEditComponent extends AbstractEditHrComponent<Persona> {
         );
 
     }
+
+	protected afterRetrieve() {
+		this.contattiDS = new RowDataSource<Contatto>(this.entity.contatti);
+	}
+	protected afterCreate() {
+		this.contattiDS = new RowDataSource<Contatto>(this.entity.contatti);
+	}
 
 	protected initSync() {
 		this.sessi = this.all.enumUtilService.enumToArray(SessoEnum, 'SessoEnum');
@@ -154,5 +171,14 @@ export class PersoneEditComponent extends AbstractEditHrComponent<Persona> {
 	}
 	public pickDomicilioStatoOpen() {
 		this.pickOpen(StatiPickComponent, this.entity.domicilio, this.personaService.retPickIndirizzoStato, this.entity.domicilio);
+	}
+	
+	
+	protected control(name: string, value: any = null, validatorFn: ValidatorFn = null, key: boolean = false): FormControl {
+		const fcb: AbstractControlBuilder = new AbstractControlBuilder();
+		fcb.control(name, (value==null?this.entity[name]: value))
+		.disabled((key?this.isKeyFieldEditable(name):this.isFieldEditable(name)))
+		.validators(validatorFn);
+		return (fcb.build() as FormControl)
 	}
 }

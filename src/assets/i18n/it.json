@@ -35,6 +35,9 @@
     		"descrizione": "Descrizione",
     		"inizio": "Inizio validità",
     		"fine": "Fine validità"
+    	},
+    	"hint": {
+    		"codice": "Inserire un codice (deve essere univoco all'interno della tabella)"
     	}
     },
     "error": {
@@ -139,7 +142,8 @@
     	"description": "Tabella dati anagrafici persone",
     	"tabs": {
     		"anagrafica": "Dati anagrafici",
-    		"indirizzi": "Indirizzi"
+    		"indirizzi": "Indirizzi",
+    		"contatti": "Contatti"
     	},
     	"label": {
     		"cognome": "Cognome",
@@ -157,6 +161,11 @@
     		"titoloStudioAnno": "Anno titolo di studio",
     		"residenza": "Residenza",
     		"domicilio": "Domicilio"
+    	},
+    	"hint": {
+    		"cognome": "Inserire il cognome",
+    		"nome": "Inserire il nome",
+    		"codiceFiscale": "inserire il Codice Fiscale (16 caratteri)"
     	},
     	"pick": {
     		"title": "Cerca persona",

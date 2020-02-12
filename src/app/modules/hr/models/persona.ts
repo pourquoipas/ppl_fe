@@ -6,6 +6,7 @@ import { Provincia } from '../../base/models/provincia';
 import { Comune } from '../../base/models/comune';
 import { TitoloStudio } from '../../base/models/titolostudio';
 import { Indirizzo } from './indirizzo';
+import { Contatto } from './contatto';
 
 export class Persona implements TenantEntity {
 	uuid: string;
@@ -34,5 +35,7 @@ export class Persona implements TenantEntity {
 	titoloStudioAnno: number;
     residenza: Indirizzo;  	
     domicilio: Indirizzo;  
+
+	contatti: Contatto [];
 	
 }

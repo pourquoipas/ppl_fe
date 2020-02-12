@@ -1,9 +1,22 @@
-<mat-form-field class="{{ class }}" [formGroup]="formGroup"> 
-	<input [type]="inputType" matInput [placeholder]="placeholder" [formControlName]="controlName">
+<!--  workaround ho dovuto forzare la class mat-form-field altrimenti non la impostava -->
+<mat-form-field class="mat-form-field {{ class }}" [formGroup]="formGroup"> 
+	<input 
+		*ngIf="!required()" 
+		[type]="inputType" 
+		matInput 
+		[placeholder]="placeholder" 
+		[formControlName]="controlName">
+	<input 
+		*ngIf="required()" 
+		required 
+		[type]="inputType" 
+		matInput 
+		[placeholder]="placeholder" 
+		[formControlName]="controlName">
 	<mat-hint> {{hint}} </mat-hint> 
 	<mat-error>
 		<div style="overflow: hidden;" #parentTag (mouseenter)="move()" (mouseleave)="stop()">
 			<p #target class="error-message">{{ getErrors() }}</p>
 		</div>
-	</mat-error> 
+	</mat-error>
 </mat-form-field>

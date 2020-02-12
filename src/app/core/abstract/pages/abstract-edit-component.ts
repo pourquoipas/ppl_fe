@@ -270,6 +270,14 @@ export abstract class AbstractEditComponent<T extends Entity> extends AbstractIn
 		return this.entity && this.entity.uuid == null;
 	} 
 	
+	
+	public isFieldEditable(field: string) {
+		return this.editable && this.canManageField(field);
+	}
+	public isKeyFieldEditable(field: string) {
+		return this.editable && this.canManageField(field) && this.isKeyEditable();
+	}
+	
 	// Prove pick
 	// N.B. create il vostro abstract-edit-<modulo>.component nel vostro modulo e scrivete la pickOpen li
 /*	 

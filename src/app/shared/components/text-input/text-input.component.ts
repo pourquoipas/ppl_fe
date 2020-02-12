@@ -1,9 +1,6 @@
-import { Component, OnInit, Input, OnDestroy, ElementRef, Optional, Self, forwardRef, ViewChild, Renderer2 } from '@angular/core';
-import { FormGroup, ControlValueAccessor, FormBuilder, NgControl, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { MatFormFieldControl, MatInput } from '@angular/material';
-import { Subject } from 'rxjs';
-import { FocusMonitor } from '@angular/cdk/a11y';
+import { Component, Input, ElementRef, Optional, Self, forwardRef, ViewChild, Renderer2 } from '@angular/core';
+import { FormGroup, ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatInput, MatFormField } from '@angular/material';
 import { ValidationService } from 'src/app/core/services/validation.service';
 
 /** https://stackblitz.com/edit/angular-material-input-component
@@ -27,10 +24,11 @@ export class TextInputComponent implements ControlValueAccessor {
 	@Input() placeholder: string;
 	@Input() hint: string;
 	@Input() class: string = "w95";
+	@Input() disabled: boolean;
 
 	constructor(
 		public validationService: ValidationService,
-		private el: ElementRef, 
+//		private el: ElementRef, 
 		private renderer: Renderer2,
 	) {
 
@@ -70,11 +68,10 @@ export class TextInputComponent implements ControlValueAccessor {
 		return this.validationService.getError(this.formGroup.controls[this.controlName]);
 	}
 	
-	
-	
-	
-	
-	
+	public required(): boolean {
+		return this.validationService.hasRequiredField(this.formGroup.controls[this.controlName]);
+	}
+
 // Scroll errori
   left = 0;
   @ViewChild('parentTag', {static: false})
@@ -98,6 +95,5 @@ export class TextInputComponent implements ControlValueAccessor {
   stop(){
     this.renderer.setStyle(this.target.nativeElement, 'margin-left', '0px');
   }
-	
 	
 }

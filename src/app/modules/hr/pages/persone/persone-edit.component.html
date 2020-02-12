@@ -25,15 +25,30 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-6" *ngIf="canViewField('codice')">
+					<ppl-text-input class="w95"
+						placeholder="{{ 'table.label.codice' | translate }}"
+						[formGroup]="mainForm" controlName="codice"
+						hint="{{ 'table.hint.codice' | translate }}" 
+						>
+					</ppl-text-input>
+<!-- 				
 					<mat-form-field class="w95">
 						<input [disabled]="!canManageField('codice') || !isKeyEditable()" 
 						matInput placeholder="{{ 'table.label.codice' | translate }}" 
 						formControlName="codice" />
 					</mat-form-field>
+ -->					
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-6" *ngIf="canViewField('cognome')">
+					<ppl-text-input class="w95"
+						placeholder="{{ 'persona.label.cognome' | translate }}"
+						[formGroup]="mainForm" controlName="cognome"
+						hint="{{ 'persona.hint.cognome' | translate }}" 
+						>
+					</ppl-text-input>
+<!-- 					
 					<mat-form-field class="w95">
 						<input [disabled]="!canManageField('cognome')"
 						placeholder="{{ 'persona.label.cognome' | translate }}" 
@@ -42,13 +57,23 @@
 					        <p class="error-message" *ngIf="mainForm.controls	['cognome'].errors.required">This field is <strong>required.</strong></p>
 				    	</mat-error>
 					</mat-form-field>
+ -->					
 				</div>
 				<div class="col-sm-6" *ngIf="canViewField('nome')">
+					<ppl-text-input class="w95"
+						placeholder="{{ 'persona.label.nome' | translate }}"
+						[formGroup]="mainForm" controlName="nome"
+						hint="{{ 'persona.hint.nome' | translate }}" 
+						>
+					</ppl-text-input>
+<!-- 				
 					<mat-form-field class="w95">
 						<input [disabled]="!canManageField('nome')" matInput
 						 placeholder="{{ 'persona.label.nome' | translate }}" 
 						 formControlName="nome" />
+						 <mat-hint>Nome</mat-hint>
 					</mat-form-field>
+ -->					
 				</div>
 				<div class="col-sm-6" *ngIf="canViewField('sesso')">
 					<mat-form-field class="w95">
@@ -107,11 +132,19 @@
 					</mat-form-field>
 				</div>
 				<div class="col-sm-8" *ngIf="canViewField('codiceFiscale')">
+					<ppl-text-input class="w95" 
+						[formGroup]="mainForm" controlName="codiceFiscale"
+						placeholder="{{ 'persona.label.codiceFiscale' | translate }}" 
+						hint="{{ 'persona.hint.codiceFiscale' | translate }}" 
+					>
+					</ppl-text-input>
+<!--  					
 					<mat-form-field class="w95">
 						<input [disabled]="!canManageField('codiceFiscale')" matInput
 						 placeholder="{{ 'persona.label.codiceFiscale' | translate }}" 
 						 formControlName="codiceFiscale" />
 					</mat-form-field>
+-->					
 				</div>
 			</div>
 			<div class="row">
@@ -360,7 +393,15 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>	
+		</div>
+	</div>
+</mat-tab>
+<!-- TAB Contatti -->		
+<mat-tab label="{{'persona.tabs.contatti' | translate}}">
+	<div class="mat-elevation-z2 mat-edit-card">
+		<div class="container-fluid">
+			
 		</div>
 	</div>
 </mat-tab>
